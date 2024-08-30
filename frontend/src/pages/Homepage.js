@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faLinkedin, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import Students from "../assets/students.svg";
 import { LightPurpleButton } from '../components/buttonStyles';
 
 const Homepage = () => {
@@ -36,9 +35,6 @@ const Homepage = () => {
             <HeroSection>
                 <Grid container spacing={0}>
                     <Grid item xs={12} md={6}>
-                        <HeroImage src={Students} alt="students" />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
                         <HeroContent>
                             <HeroTitle>
                                 Welcome to
@@ -54,13 +50,13 @@ const Homepage = () => {
                             </HeroText>
                             <ButtonGroup>
                                 <StyledLink to="/choose">
-                                    <LightPurpleButton variant="contained" fullWidth>
+                                    <LightPurpleButton variant="contained" fullWidth sx={{ borderColor: '#007BFF' }}>
                                         Login
                                     </LightPurpleButton>
                                 </StyledLink>
                                 <StyledLink to="/chooseasguest">
                                     <Button variant="outlined" fullWidth
-                                        sx={{ mt: 2, mb: 3, color: "#7f56da", borderColor: "#7f56da" }}
+                                        sx={{ mt: 2, mb: 3, color: "#007BFF", borderColor: "#007BFF" }}
                                     >
                                         Login as Guest
                                     </Button>
@@ -68,7 +64,7 @@ const Homepage = () => {
                             </ButtonGroup>
                             <HeroText>
                                 Don't have an account?{' '}
-                                <Link to="/Adminregister" style={{ color: "#550080" }}>
+                                <Link to="/Adminregister" style={{ color: "#007BFF" }}>
                                     Sign up
                                 </Link>
                             </HeroText>
@@ -84,7 +80,6 @@ const Homepage = () => {
                     With our system, you can easily manage student data, track attendance, organize classes, and much more. 
                     We aim to simplify the management process so that educators can focus on what they do best: teaching.
                 </SectionText>
-                {/* Add more content here */}
             </AboutSection>
 
             <NewsSection ref={newsRef}>
@@ -94,7 +89,6 @@ const Homepage = () => {
                     From academic achievements to extracurricular activities, 
                     our News section keeps you informed about everything happening in the school community.
                 </SectionText>
-                {/* Add more content here */}
             </NewsSection>
 
             <ContactSection ref={contactRef}>
@@ -133,7 +127,6 @@ const Homepage = () => {
                     Please visit our Admission page for detailed information on the application process, 
                     required documents, and deadlines. We look forward to welcoming new students to our community.
                 </SectionText>
-                {/* Add more content here */}
             </AdmissionSection>
         </StyledContainer>
     );
@@ -146,7 +139,11 @@ const StyledContainer = styled(Container)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f0f4f8; /* Light background color */
+  background-color: #f0f4f8;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 `;
 
 const Header = styled(Box)`
@@ -155,7 +152,7 @@ const Header = styled(Box)`
   align-items: center;
   width: 100%;
   padding: 20px;
-  background-color: #550080; /* Dark background color for header */
+  background-color: #007BFF;
   color: #fff;
 `;
 
@@ -178,21 +175,18 @@ const NavItem = styled.button`
   font-weight: 500;
 
   &:hover {
-    color: #7f56da;
+    color: #0056b3;
   }
 `;
 
 const HeroSection = styled(Box)`
   display: flex;
   align-items: center;
-  padding: 50px 0;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
   background-color: #ffffff;
-`;
-
-const HeroImage = styled.img`
-  width: 100%;
-  max-height: 600px;
-  object-fit: cover;
+  box-sizing: border-box;
 `;
 
 const HeroContent = styled(Box)`

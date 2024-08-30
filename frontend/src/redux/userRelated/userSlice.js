@@ -39,20 +39,19 @@ const userSlice = createSlice({
         },
         authFailed: (state, action) => {
             state.status = 'failed';
-            state.response = action.payload;
+            state.response = action.payload?.message || 'An error occurred';
         },
         authError: (state, action) => {
             state.status = 'error';
-            state.error = action.payload;
+            state.error = action.payload?.message || 'An error occurred';
         },
         authLogout: (state) => {
             localStorage.removeItem('user');
             state.currentUser = null;
             state.status = 'idle';
             state.error = null;
-            state.currentRole = null
+            state.currentRole = null;
         },
-
         doneSuccess: (state, action) => {
             state.userDetails = action.payload;
             state.loading = false;
@@ -64,18 +63,17 @@ const userSlice = createSlice({
             state.error = null;
             state.response = null;
         },
-
         getRequest: (state) => {
             state.loading = true;
         },
         getFailed: (state, action) => {
-            state.response = action.payload;
+            state.response = action.payload?.message || 'An error occurred';
             state.loading = false;
             state.error = null;
         },
         getError: (state, action) => {
             state.loading = false;
-            state.error = action.payload;
+            state.error = action.payload?.message || 'An error occurred';
         },
         toggleDarkMode: (state) => {
             state.darkMode = !state.darkMode;

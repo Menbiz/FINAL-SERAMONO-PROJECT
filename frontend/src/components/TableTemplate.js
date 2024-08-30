@@ -1,12 +1,34 @@
-import React, { useState } from 'react'
-import { StyledTableCell, StyledTableRow } from './styles';
-import { Table, TableBody, TableContainer, TableHead, TablePagination } from '@mui/material';
+import React, { useState } from 'react';
+import {
+    Table,
+    TableBody,
+    TableContainer,
+    TableHead,
+    TablePagination,
+    Paper,
+    Tooltip,
+    IconButton
+} from '@mui/material';
+import {
+    StyledTableCell,
+    StyledTableRow
+} from './styles';
 
 const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
     return (
-        <>
+        <Paper elevation={3} style={{ padding: '20px', borderRadius: '10px' }}>
             <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -15,40 +37,38 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
                                 <StyledTableCell
                                     key={column.id}
                                     align={column.align}
-                                    style={{ minWidth: column.minWidth }}
+                                    style={{ minWidth: column.minWidth, fontWeight: 'bold', fontSize: '16px' }}
                                 >
                                     {column.label}
                                 </StyledTableCell>
                             ))}
-                            <StyledTableCell align="center">
+                            <StyledTableCell align="center" style={{ fontWeight: 'bold', fontSize: '16px' }}>
                                 Actions
                             </StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
                     <TableBody>
-                        {rows
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row) => {
-                                return (
-                                    <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                        {columns.map((column) => {
-                                            const value = row[column.id];
-                                            return (
-                                                <StyledTableCell key={column.id} align={column.align}>
-                                                    {
-                                                        column.format && typeof value === 'number'
-                                                            ? column.format(value)
-                                                            : value
-                                                    }
-                                                </StyledTableCell>
-                                            );
-                                        })}
-                                        <StyledTableCell align="center">
-                                            <ButtonHaver row={row} />
+                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+                            <StyledTableRow hover key={row.id}>
+                                {columns.map((column) => {
+                                    const value = row[column.id];
+                                    return (
+                                        <StyledTableCell key={column.id} align={column.align}>
+                                            {column.format && typeof value === 'number'
+                                                ? column.format(value)
+                                                : value}
                                         </StyledTableCell>
-                                    </StyledTableRow>
-                                );
-                            })}
+                                    );
+                                })}
+                                <StyledTableCell align="center">
+                                    <Tooltip title="View/Edit Actions">
+                                        <IconButton>
+                                            <ButtonHaver row={row} />
+                                        </IconButton>
+                                    </Tooltip>
+                                </StyledTableCell>
+                            </StyledTableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -58,14 +78,12 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
-                onPageChange={(event, newPage) => setPage(newPage)}
-                onRowsPerPageChange={(event) => {
-                    setRowsPerPage(parseInt(event.target.value, 5));
-                    setPage(0);
-                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                style={{ marginTop: '10px' }}
             />
-        </>
-    )
-}
+        </Paper>
+    );
+};
 
-export default TableTemplate
+export default TableTemplate;

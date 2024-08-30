@@ -92,7 +92,7 @@ const AdminRegisterPage = () => {
                             Admin Register
                         </Typography>
                         <Typography variant="h7">
-                            Create your own school by registering as an admin.
+                        Create Your Own School by Registering as an Admin.
                             <br />
                             You will be able to add students and faculty and
                             manage the system.
@@ -213,5 +213,5 @@ export default AdminRegisterPage
 const StyledLink = styled(Link)`
   margin-top: 9px;
   text-decoration: none;
-  color: #7f56da;
+  color: #ADD8E6.;
 `;

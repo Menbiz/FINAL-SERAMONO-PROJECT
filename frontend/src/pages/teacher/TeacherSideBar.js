@@ -7,11 +7,12 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AnnouncementOutlinedIcon from '@mui/icons-material/AnnouncementOutlined';
 import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
+import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined'; // New icon for Lesson Plan
 import { useSelector } from 'react-redux';
 
 const TeacherSideBar = () => {
     const { currentUser } = useSelector((state) => state.user);
-    const sclassName = currentUser.teachSclass
+    const sclassName = currentUser.teachSclass;
 
     const location = useLocation();
     return (
@@ -34,6 +35,13 @@ const TeacherSideBar = () => {
                         <AnnouncementOutlinedIcon color={location.pathname.startsWith("/Teacher/complain") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Complain" />
+                </ListItemButton>
+                {/* New Lesson Plan link */}
+                <ListItemButton component={Link} to="/Teacher/submissions">
+                    <ListItemIcon>
+                        <AssignmentOutlinedIcon color={location.pathname.startsWith("/Teacher/submissions") ? 'primary' : 'inherit'} />
+                    </ListItemIcon>
+                    <ListItemText primary="Submissions" />
                 </ListItemButton>
             </React.Fragment>
             <Divider sx={{ my: 1 }} />
@@ -58,4 +66,4 @@ const TeacherSideBar = () => {
     )
 }
 
-export default TeacherSideBar
+export default TeacherSideBar;

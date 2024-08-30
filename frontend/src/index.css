@@ -1,6 +1,8 @@
 * {
   font-family: 'Poppins', sans-serif;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
@@ -9,7 +11,12 @@ a {
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 4px;
 }
 
 :root {
@@ -27,69 +34,88 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* color: #ffffff; */
-  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1510936111840-65e151ad71bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=890&q=80"); */
-  /* background-color: var(--color-bg);
-  background-size: cover;
-  background-blend-mode: darken; */
-  font-family: "Josefin Sans", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-light);
+  padding: 20px;
 }
 
 .registerTitle {
-  font-size: 50px;
+  font-size: 40px;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .registerForm {
-  margin-top: -50px;
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-bg-variant);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.registerForm>label {
+.registerForm > label {
   margin: 10px 0;
-  color: rgb(0, 0, 0);
+  color: var(--color-light);
 }
 
 .registerInput {
-  padding: 10px;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid var(--color-bg-variant);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
 .registerInput:focus {
   outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 5px var(--color-primary);
 }
 
 .registerButton {
   margin-top: 20px;
   cursor: pointer;
-  background-color: #000000;
+  background-color: var(--color-primary);
   color: white;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   text-align: center;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .registerButton:hover {
-  background-color: #313131;
+  background-color: var(--color-primary-variant);
+  transform: scale(1.02);
 }
 
 @media screen and (max-width: 480px) {
   .register {
-    background-position: right;
+    padding: 15px;
+  }
+
+  .registerForm {
+    padding: 20px;
+  }
+
+  .registerTitle {
+    font-size: 36px;
   }
 
   .registerInput {
-    font-size: 15px;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
   }
 
   .registerButton {
     font-size: 16px;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 10px;
   }
 }

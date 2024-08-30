@@ -15,6 +15,12 @@ const store = configureStore({
         complain: complainReducer,
         sclass: sclassReducer
     },
+    // Add middleware and devTools configuration if necessary
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false, // Disable the serializable check
+        }),
+    devTools: process.env.NODE_ENV !== 'production', // Enable devTools in non-production environments
 });
 
 export default store;
